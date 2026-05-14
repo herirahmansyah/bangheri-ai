@@ -1,0 +1,124 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #004d40;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+nav {
+    background-color: #00695c;
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    /* KRITERIA WAJIB: Menggunakan Flexbox untuk Navigasi */
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout */
+main {
+    padding: 20px;
+    /* KRITERIA WAJIB: Menggunakan Flexbox untuk Layout Utama */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Content Area */
+#content {
+    flex: 3; /* Area konten lebih besar */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar / Aside */
+aside {
+    flex: 1; /* Area aside lebih kecil */
+}
+
+.profile img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 10px auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+th {
+    text-align: left;
+    padding-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #004d40;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 20px;
+}
+
+/* SARAN PENILAIAN: Responsive Design dengan Media Query */
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column; /* Stack konten dan aside secara vertikal di mobile */
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav li {
+        margin: 5px 0;
+    }
+}

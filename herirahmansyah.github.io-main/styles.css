@@ -1,0 +1,449 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  color: #333;
+  background: #f4f4f4;
+}
+.dark-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+body.dark {
+  background: #121212;
+  color: #eaeaea;
+}
+
+body.dark .hero-content h1,
+body.dark .hero-content p {
+  color: #ffffff;
+}
+
+body.dark .hero-content span {
+  color: #4a90e2;
+}
+
+body.dark .hero {
+  background: linear-gradient(135deg, #121212, #1f1f1f);
+}
+
+body.dark .section {
+  background: #121212;
+}
+
+body.dark .project {
+  background: #1f1f1f;
+}
+
+body.dark .progress-bar {
+  background: #333;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+/* =========================
+   LIVE PREVIEW MODAL
+========================= */
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.preview-modal img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  animation: zoomIn 0.35s ease;
+}
+
+.preview-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 34px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Zoom animation */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   DARK MODE NAVIGATION
+========================= */
+body.dark header {
+    background: #111;
+}
+
+body.dark nav ul li a {
+    color: #f5f5f5;
+}
+
+body.dark nav ul li a:hover {
+    color: #4a90e2;
+}
+body.dark nav ul {
+    background: #111;
+}
+body.dark nav ul li a {
+  padding: 12px 0;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+}
+
+/* =========================
+   UNIVERSAL BUTTON STYLE
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+  padding: 12px 20px;
+
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: #fff;
+
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* HOVER ANIMATION (SAMA SEMUA) */
+.btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(74,144,226,0.35);
+}
+
+/* ACTIVE (KLIK) */
+.btn:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 6px 12px rgba(74,144,226,0.25);
+}
+
+
+.skills-list {
+  max-width: 700px;
+  margin: auto;
+}
+
+.skill {
+  margin-bottom: 1.5rem;
+}
+
+.skill span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  border-radius: 6px;
+  transition: width 1.2s ease;
+}
+
+/* Section */
+.section {
+  padding: 5rem 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.project-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #4a90e2;
+  color: #4a90e2;
+}
+
+.btn-outline:hover {
+  background: #4a90e2;
+  color: #fff;
+}
+
+/* Dark mode */
+body.dark .btn-outline {
+  border-color: #6aaeff;
+  color: #6aaeff;
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.social-links i {
+  font-size: 30px;
+}
+body.dark .social-links i {
+  color: #f5f5f5;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* =========================
+   SOCIAL ICON BASE
+========================= */
+.social-links a {
+  color: #444;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links i {
+  font-size: 28px;
+}
+
+/* =========================
+   SOCIAL ICON ANIMATION
+========================= */
+.social-links a {
+  font-size: 28px;
+  color: #444;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: translateY(-8px);
+}
+
+/* BRAND COLORS */
+.social-links a:hover .fa-whatsapp {
+  color: #25d366;
+}
+
+.social-links a:hover .fa-instagram {
+  color: #e1306c;
+}
+
+.social-links a:hover .fa-facebook {
+  color: #1877f2;
+}
+
+.social-links a:hover .fa-linkedin {
+  color: #0a66c2;
+}
+
+.social-links a:hover .fa-envelope {
+  color: #d44638;
+}
+
+/* DARK MODE */
+body.dark .social-links a {
+  color: #f5f5f5;
+}
+
+/* =========================
+   CERTIFICATE MODAL
+========================= */
+.cert-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* GAMBAR */
+.cert-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+/* ❌ TOMBOL CLOSE */
+.cert-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+
+  cursor: pointer;
+  z-index: 10000; /* 🔥 INI PENTING */
+}
+/* =========================
+   WHATSAPP ICON
+========================= */
+.social-links a.wa {
+  color: #25D366;
+}
+
+.social-links a.wa:hover {
+  color: #1ebe5d;
+  transform: translateY(-6px) scale(1.05);
+}
+
+/* Dark mode fix */
+body.dark .social-links a.wa {
+  color: #25D366;
+}
+
+/* Optional text */
+.contact-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .about-content {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
