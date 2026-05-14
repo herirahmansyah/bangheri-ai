@@ -123,7 +123,7 @@ nav {
 }
 .logo-text span { color: var(--gold); }
 
-nav ul { display: flex; gap: 2rem; list-style: none; }
+nav ul { display: flex; gap: 2rem; list-style: none; flex-shrink: 1; min-width: 0; }
 nav a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; font-weight: 500; }
 nav a:hover { color: var(--white); }
 
@@ -257,8 +257,8 @@ body.light #cta .cta-inner p {
   gap: 0;
 }
 .nav-theme-toggle {
-  order: -1;
-  margin-right: 12px;
+  margin-left: 12px;
+  flex-shrink: 0;
 }
 
 .nav-wa {
@@ -828,6 +828,13 @@ footer a:hover { color: var(--gold); }
   .services-grid, .testi-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .badge-strip { gap: 1.5rem; }
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
 }
 </style>
 </head>
