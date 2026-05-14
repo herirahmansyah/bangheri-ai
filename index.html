@@ -75,6 +75,9 @@ body::after {
   align-items: center;
   justify-content: center;
   color: var(--text);
+  flex-shrink: 0;
+  min-width: 36px;
+  min-height: 36px;
 }
 
 .theme-toggle:hover {
@@ -96,7 +99,7 @@ body::after {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 3%;
+  padding: 1.1rem 2%;
   background: rgba(14,12,9,0.9);
   backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(232,184,75,0.1);
@@ -136,7 +139,8 @@ body.light .nav-wa {
 /* Light mode toggle icon visibility */
 body.light .nav-theme-toggle .theme-toggle {
   color: #1a1710;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.05);
 }
 body.light .nav-theme-toggle .theme-toggle:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -254,11 +258,13 @@ body.light #cta .cta-inner p {
 .nav-right-actions {
   display: flex;
   align-items: center;
-  gap: 0;
+  flex-shrink: 0;
+  gap: 10px;
+  padding-right: 4px;
 }
 .nav-theme-toggle {
-  margin-left: 12px;
   flex-shrink: 0;
+  margin-left: 0;
 }
 
 .nav-wa {
