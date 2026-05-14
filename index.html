@@ -85,6 +85,7 @@ body::after {
   width: 24px;
   height: 24px;
   transition: transform 0.3s ease;
+  color: currentColor;
 }
 
 .moon-icon {
@@ -101,7 +102,7 @@ nav {
   border-bottom: 1px solid rgba(232,184,75,0.1);
 }
 
-.logo-wrap { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; overflow: visible; }
+.logo-wrap { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; overflow: visible; min-width: 160px; }
 .logo-icon {
   width: 36px; height: 36px;
   background: var(--gold);
@@ -130,6 +131,15 @@ body.light .nav-wa {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+/* Light mode toggle icon visibility */
+body.light .nav-theme-toggle .theme-toggle {
+  color: #1a1710;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+body.light .nav-theme-toggle .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 /* Light mode section styles for better visibility */
 body.light #services {
   background: #f5f0e8;
@@ -148,7 +158,7 @@ body.light #services .srv-card h3 {
   color: #0e0c09;
 }
 body.light #services .srv-number {
-  color: rgba(232, 184, 75, 0.2);
+  color: rgba(180, 140, 30, 0.25);
 }
 body.light #services .srv-icon {
   color: #0e0c09;
