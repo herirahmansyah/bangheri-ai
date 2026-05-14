@@ -820,6 +820,43 @@ body.light .srv-number {
   color: rgba(124,92,252,0.25);
 }
 
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.anim-up { opacity: 0; }
+.anim-left { opacity: 0; }
+.anim-right { opacity: 0; }
+.anim-scale { opacity: 0; }
+
+.anim-up.animated { animation: fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+.anim-left.animated { animation: fadeInLeft 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+.anim-right.animated { animation: fadeInRight 0.7s cubic-bezier(0.22,1,0.36,1) forwards; }
+.anim-scale.animated { animation: scaleIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+.anim-delay-1 { animation-delay: 0.1s !important; }
+.anim-delay-2 { animation-delay: 0.2s !important; }
+.anim-delay-3 { animation-delay: 0.3s !important; }
+.anim-delay-4 { animation-delay: 0.4s !important; }
+.anim-delay-5 { animation-delay: 0.5s !important; }
+.anim-delay-6 { animation-delay: 0.6s !important; }
+
 </style>
 </head>
 <body>
@@ -856,16 +893,16 @@ body.light .srv-number {
   <div class="orb2 hero-orb"></div>
 
   <div class="hero-left">
-    <div class="eyebrow">Agensi AI Indonesia</div>
-    <h1>
+    <div class="eyebrow anim-up">Agensi AI Indonesia</div>
+    <h1 class="anim-up anim-delay-1">
       Bisnis Anda Bisa<br>
       Jalan <em>Otomatis</em><br>
       Tanpa Nambah Orang
     </h1>
-    <p class="hero-desc">
+    <p class="hero-desc anim-up anim-delay-2">
       BangHeri Agensi AI hadir untuk membantu bisnis Indonesia <strong>lepas dari jebakan proses manual</strong>. Dari otomasi alur kerja, chatbot AI, hingga integrasi data — kami kerjakan dari awal sampai berjalan.
     </p>
-    <div class="hero-actions">
+    <div class="hero-actions anim-up anim-delay-3">
       <a href="https://wa.me/6282125495080?text=Halo%20Bang%20Heri,%20saya%20tertarik%20konsultasi%20otomasi%20AI%20untuk%20bisnis%20saya" target="_blank" class="btn-gold">
         <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Konsultasi Gratis
@@ -875,7 +912,7 @@ body.light .srv-number {
   </div>
 
   <div class="hero-right">
-    <div class="hero-visual">
+    <div class="hero-visual anim-right anim-delay-2">
       <div class="vis-header">
         <span class="vis-title">Dashboard Otomasi</span>
         <span class="vis-live">Live</span>
@@ -924,7 +961,7 @@ body.light .srv-number {
 </section>
 
 <!-- ══ STRIP ══ -->
-<div class="badge-strip reveal">
+<div class="badge-strip reveal anim-up">
   <div class="badge-item"><div class="badge-dot"></div><strong>AI Engineer</strong>&nbsp;Bersertifikat BNSP</div>
   <div class="badge-item"><div class="badge-dot"></div>Spesialis&nbsp;<strong>n8n Automation</strong></div>
   <div class="badge-item"><div class="badge-dot"></div>Pengalaman&nbsp;<strong>Machine Learning</strong></div>
@@ -934,13 +971,13 @@ body.light .srv-number {
 
 <!-- ══ SERVICES ══ -->
 <section id="services">
-  <div class="sec-head reveal">
+  <div class="sec-head reveal anim-up">
     <span class="sec-label">Layanan Kami</span>
     <h2>Apa yang Bisa Kami Otomasi?</h2>
     <p>Dari bisnis kecil sampai perusahaan menengah — kami rancang solusi yang sesuai dengan skala dan kebutuhan Anda.</p>
   </div>
   <div class="services-grid">
-    <div class="srv-card reveal">
+    <div class="srv-card reveal anim-scale">
       <div class="srv-number">01</div>
       <span class="srv-icon">🔄</span>
       <h3>Otomasi Alur Kerja</h3>
@@ -952,7 +989,7 @@ body.light .srv-number {
         <span class="tag">API Integration</span>
       </div>
     </div>
-    <div class="srv-card reveal delay-1">
+    <div class="srv-card reveal delay-1 anim-scale">
       <div class="srv-number">02</div>
       <span class="srv-icon">🤖</span>
       <h3>Chatbot & AI Agent</h3>
@@ -964,7 +1001,7 @@ body.light .srv-number {
         <span class="tag">Customer Service</span>
       </div>
     </div>
-    <div class="srv-card reveal delay-2">
+    <div class="srv-card reveal delay-2 anim-scale">
       <div class="srv-number">03</div>
       <span class="srv-icon">📊</span>
       <h3>Dashboard & Analitik</h3>
@@ -975,7 +1012,7 @@ body.light .srv-number {
         <span class="tag">Data Pipeline</span>
       </div>
     </div>
-    <div class="srv-card reveal">
+    <div class="srv-card reveal anim-scale">
       <div class="srv-number">04</div>
       <span class="srv-icon">🧠</span>
       <h3>Machine Learning Custom</h3>
@@ -986,7 +1023,7 @@ body.light .srv-number {
         <span class="tag">Scikit-learn</span>
       </div>
     </div>
-    <div class="srv-card reveal delay-1">
+    <div class="srv-card reveal delay-1 anim-scale">
       <div class="srv-number">05</div>
       <span class="srv-icon">🔗</span>
       <h3>Integrasi Sistem</h3>
@@ -997,7 +1034,7 @@ body.light .srv-number {
         <span class="tag">500+ Apps</span>
       </div>
     </div>
-    <div class="srv-card reveal delay-2">
+    <div class="srv-card reveal delay-2 anim-scale">
       <div class="srv-number">06</div>
       <span class="srv-icon">🌐</span>
       <h3>Web Development</h3>
@@ -1013,28 +1050,28 @@ body.light .srv-number {
 
 <!-- ══ PROCESS ══ -->
 <section id="process">
-  <div class="sec-head reveal">
+  <div class="sec-head reveal anim-up">
     <span class="sec-label">Cara Kerja</span>
     <h2>Dari Konsultasi ke Otomasi — 4 Langkah</h2>
     <p>Proses yang sederhana, transparan, dan selalu melibatkan Anda di setiap tahapnya.</p>
   </div>
   <div class="process-steps">
-    <div class="step-card reveal">
+    <div class="step-card reveal anim-up">
       <div class="step-circle">1</div>
       <h3>Konsultasi Gratis</h3>
       <p>Kita ngobrol santai via WA atau video call. Saya pelajari bisnis dan bottleneck utama Anda.</p>
     </div>
-    <div class="step-card reveal delay-1">
+    <div class="step-card reveal delay-1 anim-up">
       <div class="step-circle">2</div>
       <h3>Audit & Proposal</h3>
       <p>Saya kirim proposal terperinci: solusi, estimasi waktu, dan proyeksi ROI yang realistis.</p>
     </div>
-    <div class="step-card reveal delay-2">
+    <div class="step-card reveal delay-2 anim-up">
       <div class="step-circle">3</div>
       <h3>Build & Testing</h3>
       <p>Sistem dibangun, diuji, dan disempurnakan bersama Anda sebelum diluncurkan.</p>
     </div>
-    <div class="step-card reveal delay-3">
+    <div class="step-card reveal delay-3 anim-up">
       <div class="step-circle">4</div>
       <h3>Launch & Support</h3>
       <p>Sistem aktif berjalan. Saya dampingi selama 30 hari pertama untuk memastikan segalanya lancar.</p>
@@ -1046,7 +1083,7 @@ body.light .srv-number {
 <section id="founder">
   <div class="founder-wrap">
     <div class="founder-left reveal">
-      <div class="founder-card">
+      <div class="founder-card anim-left">
         <div class="founder-avatar">HR</div>
         <div class="founder-name">Heri Rahmansyah</div>
         <div class="founder-title">AI Engineer · Data Analyst · Web Developer</div>
@@ -1063,7 +1100,7 @@ body.light .srv-number {
         </div>
       </div>
     </div>
-    <div class="founder-right reveal delay-1">
+    <div class="founder-right reveal delay-1 anim-right">
       <span class="sec-label">Tentang Founder</span>
       <h2>Bukan Sekadar Tools — Ada Orang yang Bertanggung Jawab</h2>
       <p>Saya Heri Rahmansyah — AI Engineer sekaligus orang yang akan langsung ngerjain proyek Anda. Bukan tim anonim, bukan outsource. Saya pegang dari konsultasi awal sampai sistem berjalan mulus.</p>
@@ -1097,13 +1134,13 @@ body.light .srv-number {
 
 <!-- ══ TESTIMONIALS ══ -->
 <section id="testimonials">
-  <div class="sec-head reveal">
+  <div class="sec-head reveal anim-up">
     <span class="sec-label">Testimoni</span>
     <h2>Kata Mereka yang Sudah Merasakan</h2>
     <p>Klien dari berbagai industri berbagi pengalaman nyata bersama BangHeri Agensi AI.</p>
   </div>
   <div class="testi-grid">
-    <div class="testi reveal">
+    <div class="testi reveal anim-scale">
       <div class="testi-stars">★★★★★</div>
       <blockquote>Proses rekrutmen kami yang biasanya 3 hari sekarang selesai dalam 3 jam. AI-nya bisa baca dan nilai CV otomatis, tim HR bisa fokus ke yang penting.</blockquote>
       <div class="testi-author">
@@ -1114,7 +1151,7 @@ body.light .srv-number {
         </div>
       </div>
     </div>
-    <div class="testi reveal delay-1">
+    <div class="testi reveal delay-1 anim-scale">
       <div class="testi-stars">★★★★★</div>
       <blockquote>Dashboard Power BI-nya luar biasa. Data penjualan 4 tahun bisa dilihat dalam hitungan detik. Keputusan bisnis sekarang jauh lebih cepat dan akurat.</blockquote>
       <div class="testi-author">
@@ -1125,7 +1162,7 @@ body.light .srv-number {
         </div>
       </div>
     </div>
-    <div class="testi reveal delay-2">
+    <div class="testi reveal delay-2 anim-scale">
       <div class="testi-stars">★★★★★</div>
       <blockquote>Chatbot WhatsApp-nya membantu banget. Pelanggan bisa tanya dan order 24 jam tanpa perlu CS standby. Omzet naik, biaya operasional turun.</blockquote>
       <div class="testi-author">
@@ -1141,7 +1178,7 @@ body.light .srv-number {
 
 <!-- ══ CTA ══ -->
 <section id="cta">
-  <div class="cta-inner reveal">
+  <div class="cta-inner reveal anim-scale">
     <span class="sec-label">Mulai Sekarang</span>
     <h2>Bisnis Anda Layak Berjalan Lebih Efisien</h2>
     <p>Konsultasi pertama gratis, santai, dan tanpa tekanan. Ceritakan masalah Anda — saya bantu temukan solusinya.</p>
@@ -1156,7 +1193,7 @@ body.light .srv-number {
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="contact-grid">
-    <div class="contact-info reveal">
+    <div class="contact-info reveal anim-left">
       <span class="sec-label">Kontak</span>
       <h2>Hubungi Kami</h2>
       <p>Punya pertanyaan atau mau langsung diskusi? Pilih cara yang paling nyaman untuk Anda.</p>
@@ -1179,7 +1216,7 @@ body.light .srv-number {
         </a>
       </div>
     </div>
-    <div class="contact-form-box reveal delay-1">
+    <div class="contact-form-box reveal delay-1 anim-right">
       <form id="contactForm" action="https://formspree.io/f/xkoyaqwp" method="POST">
         <div class="form-row">
           <div class="form-group">
@@ -1233,11 +1270,59 @@ body.light .srv-number {
 </footer>
 
 <script>
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.08 });
-reveals.forEach(r => io.observe(r));
+const allAnims = document.querySelectorAll('.anim-up, .anim-left, .anim-right, .anim-scale');
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('animated');
+      }, (entry.target.dataset.delay || 0));
+      animObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+allAnims.forEach(el => animObserver.observe(el));
+
+const srvCards = document.querySelectorAll('.srv-card');
+srvCards.forEach((card, i) => {
+  card.style.animationDelay = (i * 0.1) + 's';
+});
+
+const stepCards = document.querySelectorAll('.step-card');
+stepCards.forEach((card, i) => {
+  card.style.animationDelay = (i * 0.12) + 's';
+});
+
+const testis = document.querySelectorAll('.testi');
+testis.forEach((t, i) => {
+  t.style.animationDelay = (i * 0.1) + 's';
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.classList.add(savedTheme);
+updateToggleIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const isDark = body.classList.contains('dark');
+  body.classList.remove(isDark ? 'dark' : 'light');
+  body.classList.add(isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  updateToggleIcon(isDark ? 'light' : 'dark');
+});
+
+function updateToggleIcon(theme) {
+  const sun = themeToggle.querySelector('.sun-icon');
+  const moon = themeToggle.querySelector('.moon-icon');
+  if (theme === 'dark') {
+    sun.style.display = 'block';
+    moon.style.display = 'none';
+  } else {
+    sun.style.display = 'none';
+    moon.style.display = 'block';
+  }
+}
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -1253,44 +1338,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     this.reset();
   }, 4000);
 });
-
-// Dark/Light mode toggle
-const themeToggle = document.getElementById('themeToggle');
-const sunIcon = document.querySelector('.sun-icon');
-const moonIcon = document.querySelector('.moon-icon');
-
-function initTheme() {
-  const saved = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  if (saved === 'light') {
-    document.body.classList.add('light');
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-  } else {
-    document.body.classList.remove('light');
-    sunIcon.style.display = 'block';
-    moonIcon.style.display = 'none';
-  }
-}
-
-themeToggle.addEventListener('click', () => {
-  const current = localStorage.getItem('theme') || 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('theme', next);
-  document.documentElement.setAttribute('data-theme', next);
-
-  if (next === 'light') {
-    document.body.classList.add('light');
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-  } else {
-    document.body.classList.remove('light');
-    sunIcon.style.display = 'block';
-    moonIcon.style.display = 'none';
-  }
-});
-
-initTheme();
 </script>
 </body>
 </html>
