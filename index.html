@@ -25,15 +25,6 @@
   --radius: 14px;
 }
 
-/* Light mode overrides */
-body.light {
-  --surface: #f5f0e8;
-  --card: #ffffff;
-  --card2: #f0ece3;
-  --text: #1a1710;
-  --muted: #6b6355;
-  --white: #0e0c09;
-}
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -186,115 +177,6 @@ nav a:hover { color: var(--white); }
   flex-shrink: 0;
 }
 
-/* Light mode WhatsApp button styles */
-body.light .nav-wa {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-body.light .theme-toggle {
-  color: #1a1710;
-  border: 1px solid rgba(0,0,0,0.25);
-  background: rgba(0,0,0,0.05);
-}
-
-/* Light mode section styles for better visibility */
-body.light #services {
-  background: #f5f0e8;
-}
-body.light #services .sec-label {
-  color: #e8b84b;
-}
-body.light #services h2 {
-  color: #0e0c09;
-}
-body.light #services .srv-card {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.06);
-}
-body.light #services .srv-card h3 {
-  color: #0e0c09;
-}
-body.light #services .srv-number {
-  color: rgba(140,100,20,0.35);
-}
-body.light #services .srv-icon {
-  color: #0e0c09;
-}
-body.light #services .srv-card p {
-  color: #6b6355;
-}
-body.light #services .tag {
-  background: rgba(232, 184, 75, 0.15);
-  color: #e8b84b;
-  border-color: rgba(232, 184, 75, 0.25);
-}
-
-body.light #process {
-  background: #f5f0e8;
-}
-body.light #process .sec-label {
-  color: #e8b84b;
-}
-body.light #process h2 {
-  color: #0e0c09;
-}
-body.light #process .step-card h3 {
-  color: #0e0c09;
-}
-body.light #process .step-card p {
-  color: #6b6355;
-}
-body.light #process .step-circle {
-  background: #ffffff;
-  border-color: rgba(232, 184, 75, 0.25);
-  color: #e8b84b;
-}
-body.light #process .step-card:hover .step-circle {
-  background: #e8b84b;
-  color: #0e0c09;
-  border-color: #e8b84b;
-}
-
-body.light #testimonials {
-  background: #f5f0e8;
-}
-body.light #testimonials .sec-label {
-  color: #e8b84b;
-}
-body.light #testimonials h2 {
-  color: #0e0c09;
-}
-body.light #testimonials .testi {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.06);
-}
-body.light #testimonials .testi blockquote {
-  color: #0e0c09;
-}
-body.light #testimonials .t-name {
-  color: #0e0c09;
-}
-body.light #testimonials .t-role {
-  color: #6b6355;
-}
-
-body.light #cta {
-  background: #f5f0e8;
-}
-body.light #cta .sec-label {
-  color: #e8b84b;
-}
-body.light #cta h2 {
-  color: #0e0c09;
-}
-body.light #cta .cta-inner {
-  background: #ffffff;
-  border-color: rgba(232, 184, 75, 0.25);
-}
-body.light #cta .cta-inner p {
-  color: #6b6355;
-}
 
 /* Nav right actions wrapper */
 .nav-right-actions {
@@ -878,21 +760,60 @@ footer a:hover { color: var(--gold); }
   .badge-strip { gap: 1.5rem; }
 }
 
+body.light {
+  --bg: #ffffff;
+  --surface: #f8f8f8;
+  --card: #ffffff;
+  --card2: #f0f0f0;
+  --border: rgba(0,0,0,0.08);
+  --gold: #7c5cfc;
+  --gold-dim: rgba(124,92,252,0.1);
+  --gold-border: rgba(124,92,252,0.25);
+  --text: #111111;
+  --muted: #555555;
+  --white: #111111;
+  --ink: #ffffff;
+}
+
+body.light nav {
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
 body.light .logo-text {
-  color: #1a1710 !important;
+  color: #111111;
 }
 
 body.light .logo-text span {
-  color: #b8860b !important;
+  color: #7c5cfc;
+}
+
+body.light .logo-icon {
+  background: #7c5cfc;
+  color: #ffffff;
+}
+
+body.light nav a {
+  color: #555555;
+}
+
+body.light nav a:hover {
+  color: #111111;
+}
+
+body.light .nav-wa {
+  background: #7c5cfc;
+  color: #ffffff;
 }
 
 body.light .theme-toggle {
-  color: #1a1710 !important;
-  border: 1px solid rgba(0,0,0,0.3) !important;
+  color: #111111;
+  border: 1px solid rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.04);
 }
 
 body.light .theme-toggle svg {
-  stroke: #1a1710 !important;
+  stroke: #111111;
 }
 
 </style>
