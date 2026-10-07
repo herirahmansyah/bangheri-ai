@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Large binaries & archives
+*.zip
+*.rar
+*.7z
+
+# Manual backups
+*.lama
+*-backup.html
+*-backup/
+_archive/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+
+# Editor
+.vscode/
+.idea/
+
+# Local experiments (not committed)
+lab/
+orchid-project/
+scrollcraft/
