@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ================================================
-  // 1. SCROLL PROGRESS BAR + SECTION HUD
-  // ================================================
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -26,18 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hud) hud.textContent = (activeIdx < 10 ? "0" + activeIdx : activeIdx) + " " + Math.round(sectionPct) + "%";
   });
 
-  // ================================================
-  // 2. HERO — Ken Burns subtle zoom on load
-  // ================================================
   gsap.fromTo("#hero",
     { backgroundSize: "110%" },
     { backgroundSize: "100%", duration: 2.5, ease: "power2.out" }
   );
 
-  // ================================================
-  // 3. MANDALIKA — PINNED parallax
-  //    Section di-pin, background bergerak dari atas ke bawah
-  // ================================================
   gsap.fromTo("#mandalika-bg",
     { yPercent: -15 },
     {
@@ -54,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // Fade in konten Mandalika saat section mulai masuk
   gsap.fromTo(".parallax-content",
     { opacity: 0, y: 40 },
     {
@@ -67,9 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // ================================================
-  // 4. TAS UMKM — PINNED zoom in kemudian zoom out
-  // ================================================
   const tasTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: "#tas-zoom-section",
@@ -83,13 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
   tasTimeline
     .fromTo("#tas-zoom",
       { scale: 1.0 },
-      { scale: 1.2, ease: "none" }
+      { scale: 1.25, ease: "none", duration: 1 }
     )
     .to("#tas-zoom",
-      { scale: 1.0, ease: "none" }
+      { scale: 1.0, ease: "none", duration: 1 }
     );
 
-  // Fade in service cards saat section aktif
   gsap.fromTo(".zoom-text-side",
     { opacity: 0, y: 50 },
     {
@@ -102,9 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // ================================================
-  // 5. KAIN TENUN — PINNED horizontal pan kiri ke kanan
-  // ================================================
   gsap.fromTo("#tenun-pan",
     { xPercent: 0 },
     {
@@ -121,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // Fade in konten tenun
   gsap.fromTo(".pan-content",
     { opacity: 0, y: 40 },
     {
@@ -134,28 +115,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // ================================================
-  // 6. GERABAH — PINNED rotate Y 0 ke 180 derajat
-  // ================================================
-  gsap.fromTo("#gerabah-card",
-    { rotateY: 0 },
-    {
-      rotateY: 180,
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#gerabah-rotate-section",
-        start: "top top",
-        end: "+=150%",
-        pin: true,
-        pinSpacing: true,
-        scrub: 1.5
-      }
+  const gerabahTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#gerabah-rotate-section",
+      start: "top top",
+      end: "+=150%",
+      pin: true,
+      pinSpacing: true,
+      scrub: 1.5
     }
-  );
+  });
+  gerabahTl
+    .fromTo("#gerabah-bg",
+      { rotation: 0, scale: 1.0 },
+      { rotation: 45, scale: 1.1, ease: "none", duration: 1 }
+    )
+    .fromTo(".card-face.front",
+      { opacity: 1 },
+      { opacity: 0, ease: "none", duration: 0.3 },
+      0.6
+    )
+    .fromTo(".card-face.back",
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, ease: "power2.out", duration: 0.4 },
+      0.75
+    );
 
-  // ================================================
-  // 7. ABOUT & CONTACT — fade up on enter
-  // ================================================
   gsap.fromTo(".about-split",
     { opacity: 0, y: 60 },
     {
@@ -180,10 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // ================================================
-  // 8. FADE UP — semua elemen dengan class .fade-up-element
-  //    (kecuali yang sudah di-handle GSAP di atas)
-  // ================================================
   gsap.utils.toArray(".fade-up-element").forEach(el => {
     if (!el.closest("#mandalika-parallax") &&
         !el.closest("#tas-zoom-section") &&
@@ -205,33 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ================================================
-  // 9. MOBILE HAMBURGER
-  // ================================================
-  const menuTrigger = document.querySelector(".menu-trigger");
-  const navLinks = document.querySelector(".nav-links");
-  if (menuTrigger && navLinks) {
-    menuTrigger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => navLinks.classList.remove("active"));
-    });
-  }
-
-  // ================================================
-  // 10. FORM WHATSAPP SUBMIT
-  // ================================================
-  const contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const nama = contactForm.querySelector('[placeholder="NAMA LENGKAP •"]').value;
-      const bisnis = contactForm.querySelector('[placeholder="NAMA BISNIS •"]').value;
-      const email = contactForm.querySelector('[placeholder="EMAIL •"]').value;
-      const proses = contactForm.querySelector("textarea").value;
-      const text = `Halo Bang Heri, saya ingin konsultasi otomasi AI untuk bisnis saya.\n\nNama: ${nama}\nNama Bisnis: ${bisnis}\nEmail: ${email}\nProses yang ingin diotomasi: ${proses}`;
-      window.open(`https://wa.me/6282125495080?text=${encodeURIComponent(text)}`, "_blank");
-    });
-  }
+  document.getElementById("contact-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const text = `Halo Bang Heri, saya ingin konsultasi otomasi AI untuk bisnis saya.\n\nNama: ${data.name || 'User'}\nNama Bisnis: ${data.business || 'N/A'}\nEmail: ${data.email || 'N/A'}\nProses yang ingin diotomasi: ${data.process || 'N/A'}`;
+    window.open(`https://wa.me/6282125495080?text=${encodeURIComponent(text)}`, "_blank");
+  });
 });
