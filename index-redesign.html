@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BangHeri AI — Agensi Otomasi & Kecerdasan Buatan Indonesia</title>
+  <meta name="description" content="BangHeri AI — otomasi dan AI untuk bisnis Indonesia. Didirikan Heri Rahmansyah, AI Engineer BNSP Certified." />
+  <meta name="theme-color" content="#0E0F12" />
+  <link rel="icon" href="favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scrollcraft.css" />
+  <style>
+    /* ═══ TOKEN OVERRIDE (JANGAN sentuh .sc-stage / .sc-act--pinned / [data-sc-*]) ═══ */
+    :root {
+      --sc-canvas: #0E0F12;
+      --sc-surface: #14161B;
+      --sc-ink: #F5F5F7;
+      --sc-ink-soft: #9E9E9E;
+      --sc-accent: #C5A880;
+      --sc-accent-ink: #0E0F12;
+      --sc-accent-2: #E3DAC9;
+      --sc-font-display: 'Cormorant Garamond', Georgia, serif;
+      --sc-font-text: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --sc-font-mono: 'DM Mono', ui-monospace, monospace;
+    }
+
+    /* ═══ BASE — TIDAK overflow-x hidden (bisa potong sticky) ═══ */
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0E0F12;
+      color: #F5F5F7;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+    * { box-sizing: border-box; }
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+    ::selection { background: #C5A880; color: #0E0F12; }
+
+    .bh-gold-grad {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E3DAC9 40%, #C5A880 70%, #A38558 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ═══ HEADER (fixed) ═══ */
+    .bh-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(14,15,18,0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(197,168,128,0.14);
+    }
+    .bh-header__inner {
+      max-width: 1720px; margin: 0 auto;
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .bh-brand { display: flex; flex-direction: column; gap: 3px; }
+    .bh-brand__l1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 400; letter-spacing: 0.14em;
+      color: #F5F5F7; line-height: 1;
+    }
+    .bh-brand__l1 small {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px; letter-spacing: 0.32em; color: #9E9E9E;
+      margin-left: 8px; text-transform: uppercase;
+    }
+    .bh-brand__l2 {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: #C5A880;
+    }
+    .bh-nav { display: flex; gap: 30px; align-items: center; }
+    .bh-nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #9E9E9E; transition: color 0.3s;
+    }
+    .bh-nav a:hover { color: #C5A880; }
+    .bh-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 9px 18px; border: 1px solid rgba(197,168,128,0.5);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #F5F5F7; transition: all 0.3s;
+    }
+    .bh-cta:hover { background: #C5A880; color: #0E0F12; border-color: #C5A880; }
+    .bh-cta__dot { width: 6px; height: 6px; border-radius: 50%; background: #C5A880; animation: bhPulse 2.4s ease-in-out infinite; }
+    .bh-cta:hover .bh-cta__dot { background: #0E0F12; }
+    @keyframes bhPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.35;transform:scale(1.6);} }
+
+    /* ═══ TRACE RAIL (6 node) ═══ */
+    .bh-rail {
+      position: fixed; right: 26px; top: 50%; transform: translateY(-50%);
+      z-index: 60; display: flex; flex-direction: column; gap: 22px; align-items: center;
+    }
+    .bh-rail__node {
+      width: 9px; height: 9px; border-radius: 50%;
+      border: 1px solid rgba(197,168,128,0.4); background: transparent;
+      transition: all 0.4s; position: relative; cursor: pointer;
+    }
+    .bh-rail__node::after {
+      content: attr(data-label); position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+      font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.24em;
+      color: #9E9E9E; opacity: 0; transition: opacity 0.3s; white-space: nowrap; text-transform: uppercase;
+    }
+    .bh-rail__node:hover::after { opacity: 1; }
+    .bh-rail__node.is-active { background: #C5A880; border-color: #C5A880; box-shadow: 0 0 12px rgba(197,168,128,0.6); }
+
+    /* ═══ HUD ═══ */
+    .bh-hud {
+      position: fixed; right: 26px; bottom: 26px; z-index: 90;
+      display: flex; align-items: center; gap: 18px;
+      padding: 10px 18px;
+      background: rgba(14,15,18,0.85); backdrop-filter: blur(14px);
+      border: 1px solid rgba(197,168,128,0.22);
+    }
+    .bh-hud__coord { display: flex; flex-direction: column; gap: 2px; font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.2em; color: #9E9E9E; text-transform: uppercase; }
+    .bh-hud__coord b { color: #F5F5F7; font-weight: 400; letter-spacing: 0.12em; }
+    .bh-hud__pct { font-family: 'DM Mono', monospace; font-size: 13px; color: #C5A880; }
+    .bh-hud__pct small { font-size: 9px; color: #9E9E9E; margin-left: 2px; }
+
+    /* ═══ STAGE CONTENT (dalam [data-sc-stage]) ═══ */
+    .bh-stage-media {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .bh-stage-vignette {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    }
+    .bh-stage-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1720px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ═══ HERO SECTION (PIN) ═══ */
+    .bh-hero-bg {
+      filter: brightness(0.55) contrast(1.05) saturate(0.9);
+      object-position: center 55%;
+    }
+    .bh-hero-vignette {
+      background:
+        linear-gradient(90deg, rgba(14,15,18,0.92) 0%, rgba(14,15,18,0.55) 40%, rgba(14,15,18,0.12) 72%, transparent 100%),
+        linear-gradient(0deg, #0E0F12 0%, transparent 34%),
+        linear-gradient(180deg, rgba(14,15,18,0.5) 0%, transparent 22%);
+    }
+    .bh-hero-content { max-width: 640px; }
+
+    .bh-badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 6px 14px;
+      background: rgba(20,22,27,0.78);
+      border: 1px solid rgba(197,168,128,0.32);
+      backdrop-filter: blur(10px);
+      margin-bottom: 26px;
+    }
+    .bh-badge__dot { width: 5px; height: 5px; border-radius: 50%; background: #C5A880; box-shadow: 0 0 8px #C5A880; }
+    .bh-badge span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: #C5A880; }
+
+    .bh-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 6vw, 74px);
+      font-weight: 300; line-height: 1.06;
+      letter-spacing: -0.015em;
+      margin: 0 0 22px 0; color: #F5F5F7;
+    }
+    .bh-h1 em { display: block; font-style: italic; }
+
+    .bh-hero__sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 300; line-height: 1.7;
+      color: #D1D1D6; max-width: 520px; margin: 0 0 32px 0;
+    }
+
+    .bh-stats {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      padding-top: 22px; margin-bottom: 34px;
+      border-top: 1px solid rgba(197,168,128,0.24);
+      max-width: 640px;
+    }
+    .bh-stat__label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #9E9E9E; margin-bottom: 5px;
+    }
+    .bh-stat__val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 300; color: #F5F5F7;
+      line-height: 1; display: inline-flex; align-items: baseline; gap: 5px;
+    }
+    .bh-stat__val small {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; letter-spacing: 0.2em; color: #C5A880;
+      text-transform: uppercase;
+    }
+
+    .bh-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .bh-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 15px 30px;
+      transition: all 0.35s;
+      cursor: pointer;
+    }
+    .bh-btn--solid { background: #C5A880; color: #0E0F12; font-weight: 500; border: 1px solid #C5A880; }
+    .bh-btn--solid:hover { background: #E3DAC9; border-color: #E3DAC9; }
+    .bh-btn--ghost { background: transparent; color: #F5F5F7; border: 1px solid rgba(197,168,128,0.4); }
+    .bh-btn--ghost:hover { border-color: #C5A880; background: rgba(197,168,128,0.06); }
+
+    /* ═══ SECTION LABELS ═══ */
+    .bh-sec-tag { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .bh-sec-tag__num { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C5A880; }
+    .bh-sec-tag__ln { width: 56px; height: 1px; background: rgba(197,168,128,0.3); }
+
+    .bh-sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 4.5vw, 58px);
+      font-weight: 300; line-height: 1.1;
+      color: #F5F5F7; margin: 0 0 18px 0;
+      letter-spacing: -0.01em;
+    }
+    .bh-sec-title em { font-style: italic; }
+
+    .bh-lede {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 300; line-height: 1.75;
+      color: #D1D1D6; max-width: 56ch; margin: 0 0 60px 0;
+    }
+
+    /* ═══ SERVICES GRID ═══ */
+    .bh-services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(197,168,128,0.14);
+      border: 1px solid rgba(197,168,128,0.14);
+    }
+    .bh-service {
+      background: #0E0F12;
+      padding: 36px 32px;
+      transition: background 0.35s;
+    }
+    .bh-service:hover { background: #14161B; }
+    .bh-service__head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 18px; padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bh-service__num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.24em; color: #C5A880; }
+    .bh-service__tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #9E9E9E; text-transform: uppercase; }
+    .bh-service__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 400; line-height: 1.15;
+      color: #F5F5F7; margin: 0 0 12px 0;
+    }
+    .bh-service__desc {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px; font-weight: 300; line-height: 1.7;
+      color: #A0A0A6; margin: 0;
+    }
+
+    /* ═══ FRAME (dengan crosshair) ═══ */
+    .bh-frame { position: relative; border: 1px solid rgba(197,168,128,0.28); background: #14161B; padding: 10px; }
+    .bh-frame__img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) contrast(1.06) saturate(0.85); }
+    .bh-frame__cap {
+      display: flex; justify-content: space-between; gap: 12px;
+      margin-top: 14px; padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #9E9E9E;
+    }
+    .bh-frame__cap b { color: #C5A880; font-weight: 400; }
+    .bh-frame__tl, .bh-frame__tr, .bh-frame__bl, .bh-frame__br {
+      position: absolute; width: 12px; height: 12px;
+      border-color: #C5A880; border-style: solid; border-width: 0;
+      pointer-events: none;
+    }
+    .bh-frame__tl { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
+    .bh-frame__tr { top: -1px; right: -1px; border-top-width: 2px; border-right-width: 2px; }
+    .bh-frame__bl { bottom: -1px; left: -1px; border-bottom-width: 2px; border-left-width: 2px; }
+    .bh-frame__br { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
+
+    /* ═══ FEATURED (PIN) — grid 2 kolom dalam stage ═══ */
+    .bh-featured-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+      gap: 60px;
+      align-items: center;
+    }
+    .bh-steps { display: flex; flex-direction: column; gap: 26px; }
+    .bh-step {
+      display: grid; grid-template-columns: 52px 1fr; gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(197,168,128,0.12);
+    }
+    .bh-step:last-child { border-bottom: 0; padding-bottom: 0; }
+    .bh-step__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 300; line-height: 1;
+      color: #C5A880; opacity: 0.6;
+    }
+    .bh-step__title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: #F5F5F7; margin: 0 0 6px 0; }
+    .bh-step__desc { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.65; color: #A0A0A6; margin: 0; }
+
+    /* ═══ TESTIMONIALS ═══ */
+    .bh-testimonials {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .bh-quote {
+      position: relative; padding: 36px 32px;
+      background: #14161B;
+      border: 1px solid rgba(197,168,128,0.16);
+      transition: border-color 0.35s, transform 0.35s;
+    }
+    .bh-quote:hover { border-color: rgba(197,168,128,0.4); transform: translateY(-3px); }
+    .bh-quote__mark { font-family: 'Cormorant Garamond', serif; font-size: 60px; line-height: 0.6; color: #C5A880; opacity: 0.4; margin-bottom: 18px; }
+    .bh-quote__text { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 300; font-style: italic; line-height: 1.5; color: #E3DAC9; margin: 0 0 26px 0; }
+    .bh-quote__author { padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .bh-quote__name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 400; color: #F5F5F7; margin: 0 0 4px 0; }
+    .bh-quote__role { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #C5A880; margin: 0; }
+
+    /* ═══ PROOF (FOUNDER) — dalam stage pin ═══ */
+    .bh-proof-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+      gap: 72px;
+      align-items: center;
+    }
+    .bh-proof__portrait {
+      position: relative; aspect-ratio: 4/5;
+      overflow: hidden;
+      border: 1px solid rgba(197,168,128,0.28);
+      background: #14161B;
+    }
+    .bh-proof__portrait img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 20%;
+      filter: brightness(0.92) contrast(1.08) saturate(1.05);
+    }
+    .bh-proof__caption {
+      position: absolute; left: 22px; bottom: 22px; z-index: 2;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #C5A880;
+    }
+    .bh-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .bh-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px;
+      background: rgba(20,22,27,0.6);
+      border: 1px solid rgba(197,168,128,0.28);
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #E3DAC9;
+    }
+    .bh-chip__dot { width: 4px; height: 4px; border-radius: 50%; background: #C5A880; }
+
+    /* ═══ CONTACT GRID ═══ */
+    .bh-contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+      gap: 72px;
+      align-items: center;
+    }
+    .bh-contact__details {
+      margin-top: 36px; padding-top: 28px;
+      border-top: 1px solid rgba(197,168,128,0.14);
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .bh-contact__row { display: flex; align-items: baseline; gap: 16px; }
+    .bh-contact__row-lbl { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: #9E9E9E; min-width: 88px; }
+    .bh-contact__row a, .bh-contact__row span { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 400; color: #F5F5F7; transition: color 0.3s; }
+    .bh-contact__row a:hover { color: #C5A880; }
+
+    /* ═══ FOOTER ═══ */
+    .bh-footer { background: #0E0F12; border-top: 1px solid rgba(197,168,128,0.14); padding: 56px 40px 40px 40px; }
+    .bh-footer__inner { max-width: 1720px; margin: 0 auto; }
+    .bh-footer__top {
+      display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+      padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bh-footer__brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.2em; color: #F5F5F7; }
+    .bh-footer__brand small { display: block; font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase; color: #C5A880; margin-top: 5px; }
+    .bh-footer__links { display: flex; gap: 28px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+    .bh-footer__links a { color: #9E9E9E; transition: color 0.3s; }
+    .bh-footer__links a:hover { color: #C5A880; }
+    .bh-footer__bottom { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; padding-top: 24px; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #5C5D62; text-transform: uppercase; }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 1100px) {
+      .bh-nav { display: none; }
+      .bh-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bh-testimonials { grid-template-columns: 1fr; }
+      .bh-featured-grid, .bh-proof-grid, .bh-contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .bh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .bh-header__inner, .bh-stage-inner, .bh-footer { padding-left: 22px; padding-right: 22px; }
+      .bh-services { grid-template-columns: 1fr; }
+      .bh-rail { display: none; }
+      .bh-hud { right: 12px; bottom: 12px; padding: 8px 12px; }
+      .bh-hud__coord { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div data-sc-progress></div>
+
+  <header class="bh-header">
+    <div class="bh-header__inner">
+      <a href="#identity" class="bh-brand">
+        <span class="bh-brand__l1"><b>BangHeri</b><small>AI</small></span>
+        <span class="bh-brand__l2">Agensi Otomasi &amp; Kecerdasan Buatan</span>
+      </a>
+      <nav class="bh-nav">
+        <a href="#identity">01 Beranda</a>
+        <a href="#thesis">02 Layanan</a>
+        <a href="#featured">03 Hasil</a>
+        <a href="#proof">04 Founder</a>
+        <a href="#contact" class="bh-cta"><span>Konsultasi Gratis</span><span class="bh-cta__dot"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="bh-rail" aria-hidden="true">
+    <a href="#identity"   class="bh-rail__node is-active" data-label="Beranda"   data-target="identity"></a>
+    <a href="#thesis"     class="bh-rail__node" data-label="Layanan"   data-target="thesis"></a>
+    <a href="#featured"   class="bh-rail__node" data-label="Hasil"     data-target="featured"></a>
+    <a href="#collection" class="bh-rail__node" data-label="Testimoni" data-target="collection"></a>
+    <a href="#proof"      class="bh-rail__node" data-label="Founder"   data-target="proof"></a>
+    <a href="#contact"    class="bh-rail__node" data-label="Kontak"    data-target="contact"></a>
+  </nav>
+
+  <div class="bh-hud">
+    <div class="bh-hud__coord"><span>Lokasi</span><b>Jakarta · GMT+7</b></div>
+    <div class="bh-hud__pct"><span data-sc-hud-pct>00</span><small>%</small></div>
+  </div>
+
+  <main>
+
+    <!-- ═══════════ 01 · HERO (PIN) ═══════════ -->
+    <section id="identity" data-sc-act="pin" data-sc-span="1.25">
+      <div data-sc-stage style="display:flex; align-items:center; justify-content:flex-start;">
+        <img class="bh-stage-media bh-hero-bg" src="assets/hero.webp" alt="" fetchpriority="high" />
+        <div class="bh-stage-vignette bh-hero-vignette"></div>
+        <div class="bh-stage-inner">
+          <div class="bh-hero-content">
+            <div class="bh-badge" data-sc-in>
+              <span class="bh-badge__dot"></span>
+              <span>BNSP Certified · AI Engineer</span>
+            </div>
+            <h1 class="bh-h1" data-sc-kinetic="lines" data-sc-cue="0.05 0.5">
+              Masih kerjakan<br>
+              <em class="bh-gold-grad">hal sama berulang?</em>
+            </h1>
+            <p class="bh-hero__sub" data-sc-in>
+              Enam layanan otomasi yang dirancang sesuai skala bisnis Indonesia. Tidak ada paket generik — hanya otomasi yang langsung jalan, dalam 48 jam.
+            </p>
+            <div class="bh-stats" data-sc-in data-sc-stagger="70">
+              <div><span class="bh-stat__label">Deploy Perdana</span><span class="bh-stat__val"><span data-sc-count="0 48">0</span><small>Jam</small></span></div>
+              <div><span class="bh-stat__label">Efisiensi</span><span class="bh-stat__val"><span data-sc-count="0 3">0</span><small>×</small></span></div>
+              <div><span class="bh-stat__label">Tambah Karyawan</span><span class="bh-stat__val"><span data-sc-count="0 0">0</span><small>Orang</small></span></div>
+              <div><span class="bh-stat__label">Dampingan</span><span class="bh-stat__val"><span data-sc-count="0 30">0</span><small>Hari</small></span></div>
+            </div>
+            <div class="bh-actions" data-sc-in data-sc-stagger="90">
+              <a href="#thesis" class="bh-btn bh-btn--solid">Lihat Layanan</a>
+              <a href="#contact" class="bh-btn bh-btn--ghost">Konsultasi Gratis →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 02 · THESIS (FLOW) ═══════════ -->
+    <section id="thesis" class="sc-section" data-sc-act="flow">
+      <div class="sc-wrap">
+        <div class="sc-stack" data-sc-in style="max-width:40rem; margin:0 auto 3rem;">
+          <div class="bh-sec-tag"><span class="bh-sec-tag__num">02 / Layanan</span><span class="bh-sec-tag__ln"></span></div>
+          <h2 class="bh-sec-title" data-sc-kinetic="lines" data-sc-cue="0.1 0.5">Ada cara lebih cerdas</h2>
+          <p class="bh-lede">Enam layanan yang saling melengkapi. Pilih satu, atau gabungkan beberapa — kami rancang alur yang paling sesuai dengan bisnis Anda.</p>
+        </div>
+        <div class="bh-services" data-sc-stagger="70">
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">01 /</span><span class="bh-service__tag">n8n · Make · API</span></div><h3 class="bh-service__title">Otomasi Alur Kerja</h3><p class="bh-service__desc">Hilangkan tugas berulang. Input, notifikasi, dan sinkronisasi berjalan tanpa sentuhan manusia.</p></article>
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">02 /</span><span class="bh-service__tag">LLM · RAG</span></div><h3 class="bh-service__title">Chatbot &amp; AI Agent</h3><p class="bh-service__desc">Asisten yang menjawab pelanggan 24/7, memahami konteks, dan mengeskalasi ke manusia saat perlu.</p></article>
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">03 /</span><span class="bh-service__tag">BI · Realtime</span></div><h3 class="bh-service__title">Dashboard &amp; Analitik</h3><p class="bh-service__desc">Data bisnis divisualkan real-time. Keputusan berbasis angka, bukan feeling.</p></article>
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">04 /</span><span class="bh-service__tag">Predictive</span></div><h3 class="bh-service__title">ML Custom</h3><p class="bh-service__desc">Model prediktif untuk demand, churn, atau scoring. Dilatih khusus dengan data Anda.</p></article>
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">05 /</span><span class="bh-service__tag">CRM · ERP · WA</span></div><h3 class="bh-service__title">Integrasi Sistem</h3><p class="bh-service__desc">Sambungkan tools yang sudah ada jadi satu alur. Tidak ada lagi data yang terputus.</p></article>
+          <article class="bh-service" data-sc-in><div class="bh-service__head"><span class="bh-service__num">06 /</span><span class="bh-service__tag">Web · SEO</span></div><h3 class="bh-service__title">Web Development</h3><p class="bh-service__desc">Landing page, dashboard internal, atau web app yang cepat, responsif, dan SEO-friendly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 · FEATURED (PIN) — bukan pan, simpler ═══════════ -->
+    <section id="featured" data-sc-act="pin" data-sc-span="2.0">
+      <div data-sc-stage style="display:flex; align-items:center;">
+        <img class="bh-stage-media" src="assets/clients.webp" alt="" style="filter:brightness(0.35) contrast(1.1) saturate(0.8);" />
+        <div class="bh-stage-vignette" style="background: linear-gradient(0deg, rgba(14,15,18,0.95) 0%, rgba(14,15,18,0.75) 50%, rgba(14,15,18,0.6) 100%);"></div>
+        <div class="bh-stage-inner">
+          <div style="max-width: 640px;" data-sc-in>
+            <div class="bh-sec-tag"><span class="bh-sec-tag__num">03 / Hasil</span><span class="bh-sec-tag__ln"></span></div>
+            <h2 class="bh-sec-title" data-sc-kinetic="lines" data-sc-cue="0.08 0.45">Bisnis jalan sendiri<br><em class="bh-gold-grad">tanpa tambah orang</em></h2>
+            <p class="bh-lede" style="margin-bottom: 0;">Kami sudah bantu UMKM, retail, dan tim HR lepas dari beban manual. Hasilnya konkret, terukur, langsung terasa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03b · STEPS (FLOW) ═══════════ -->
+    <section class="sc-section" data-sc-act="flow">
+      <div class="sc-wrap">
+        <div class="bh-steps" data-sc-stagger="80" style="max-width: 720px; margin: 0 auto;">
+          <div class="bh-step" data-sc-in><span class="bh-step__num">01</span><div><h3 class="bh-step__title">Konsultasi Gratis</h3><p class="bh-step__desc">Ngobrol 30 menit. Pahami pain point, tujuan bisnis, dan skala yang realistis.</p></div></div>
+          <div class="bh-step" data-sc-in><span class="bh-step__num">02</span><div><h3 class="bh-step__title">Audit &amp; Proposal</h3><p class="bh-step__desc">Kami petakan alur kerja, identifikasi bottleneck, dan susun rencana konkret.</p></div></div>
+          <div class="bh-step" data-sc-in><span class="bh-step__num">03</span><div><h3 class="bh-step__title">Build &amp; Testing</h3><p class="bh-step__desc">Implementasi bertahap, testing ketat, dokumentasi lengkap — dalam 48 jam.</p></div></div>
+          <div class="bh-step" data-sc-in><span class="bh-step__num">04</span><div><h3 class="bh-step__title">Launch &amp; Support</h3><p class="bh-step__desc">Deploy ke production, dampingan 30 hari untuk optimalisasi dan handover.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 · COLLECTION (FLOW) ═══════════ -->
+    <section id="collection" class="sc-section" data-sc-act="flow">
+      <div class="sc-wrap">
+        <div class="sc-stack" data-sc-in style="max-width:40rem; margin:0 auto 3rem;">
+          <div class="bh-sec-tag"><span class="bh-sec-tag__num">04 / Testimoni</span><span class="bh-sec-tag__ln"></span></div>
+          <h2 class="bh-sec-title" data-sc-kinetic="lines" data-sc-cue="0.1 0.5">Sudah terbukti nyata</h2>
+          <p class="bh-lede" style="margin-bottom: 0;">Bukan janji di pitch deck. Ini yang klien kami rasakan setelah sistem berjalan.</p>
+        </div>
+        <div class="bh-testimonials" data-sc-stagger="90">
+          <article class="bh-quote" data-sc-in><div class="bh-quote__mark">"</div><p class="bh-quote__text">Rekrutmen dari 3 minggu jadi 4 hari. Kandidat di-screening otomatis, tim HR fokus ke interview kualitas.</p><div class="bh-quote__author"><p class="bh-quote__name">HR Manager</p><p class="bh-quote__role">Perusahaan Retail · Jakarta</p></div></article>
+          <article class="bh-quote" data-sc-in><div class="bh-quote__mark">"</div><p class="bh-quote__text">Stock opname yang dulu 2 hari sekarang 2 jam. Laporan penjualan otomatis ke WhatsApp setiap pagi.</p><div class="bh-quote__author"><p class="bh-quote__name">Retail Owner</p><p class="bh-quote__role">Toko Fashion · Bandung</p></div></article>
+          <article class="bh-quote" data-sc-in><div class="bh-quote__mark">"</div><p class="bh-quote__text">Chat pelanggan dibalas AI, order masuk otomatis ke sistem. Penjualan naik 40% tanpa tambah admin.</p><div class="bh-quote__author"><p class="bh-quote__name">Online Shop Owner</p><p class="bh-quote__role">E-commerce · Surabaya</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 · PROOF (PIN) ═══════════ -->
+    <section id="proof" data-sc-act="pin" data-sc-span="2.2">
+      <div data-sc-stage style="display:flex; align-items:center;">
+        <div class="bh-stage-inner">
+          <div class="bh-proof-grid">
+            <div class="bh-proof__portrait" data-sc-in data-sc-tilt="5">
+              <img src="assets/founder.webp" alt="Heri Rahmansyah" />
+              <div class="bh-proof__caption">Heri Rahmansyah · Founder</div>
+            </div>
+            <div data-sc-in>
+              <div class="bh-sec-tag"><span class="bh-sec-tag__num">05 / Founder</span><span class="bh-sec-tag__ln"></span></div>
+              <h2 class="bh-sec-title" data-sc-kinetic="lines" data-sc-cue="0.08 0.45">Bukan tim anonim</h2>
+              <p class="bh-lede">Setiap sistem di-review langsung oleh founder. Bukan outsource, bukan template — pekerjaan tangan pertama AI Engineer bersertifikat BNSP.</p>
+              <div class="bh-badges" data-sc-stagger="70">
+                <span class="bh-chip" data-sc-in><span class="bh-chip__dot"></span>BNSP Certified</span>
+                <span class="bh-chip" data-sc-in><span class="bh-chip__dot"></span>AI Engineer</span>
+                <span class="bh-chip" data-sc-in><span class="bh-chip__dot"></span>Data Analyst</span>
+                <span class="bh-chip" data-sc-in><span class="bh-chip__dot"></span>Web Developer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 · CONTACT (FLOW) ═══════════ -->
+    <section id="contact" class="sc-section" data-sc-act="flow">
+      <div class="sc-wrap">
+        <div class="bh-contact-grid">
+          <div data-sc-in>
+            <div class="bh-sec-tag"><span class="bh-sec-tag__num">06 / Kontak</span><span class="bh-sec-tag__ln"></span></div>
+            <h2 class="bh-sec-title" data-sc-kinetic="lines" data-sc-cue="0.08 0.45">Konsultasi gratis<br><em class="bh-gold-grad">via WhatsApp</em></h2>
+            <p class="bh-lede">Ceritakan alur kerja yang paling melelahkan. Kami bantu petakan otomasi apa yang paling masuk akal — tanpa biaya, tanpa komitmen.</p>
+            <div class="bh-actions" data-sc-stagger="90">
+              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="bh-btn bh-btn--solid" data-sc-in>Chat WhatsApp →</a>
+              <a href="mailto:halo@bangheri.ai" class="bh-btn bh-btn--ghost" data-sc-in>Kirim Email</a>
+            </div>
+            <div class="bh-contact__details" data-sc-in>
+              <div class="bh-contact__row"><span class="bh-contact__row-lbl">WhatsApp</span><a href="https://wa.me/6281234567890">+62 812-3456-7890</a></div>
+              <div class="bh-contact__row"><span class="bh-contact__row-lbl">Email</span><a href="mailto:halo@bangheri.ai">halo@bangheri.ai</a></div>
+              <div class="bh-contact__row"><span class="bh-contact__row-lbl">Lokasi</span><span>Jakarta, Indonesia</span></div>
+            </div>
+          </div>
+          <div class="bh-frame" data-sc-in data-sc-tilt="6" style="aspect-ratio: 4/3;">
+            <span class="bh-frame__tl"></span><span class="bh-frame__tr"></span><span class="bh-frame__bl"></span><span class="bh-frame__br"></span>
+            <img src="assets/heritage.webp" alt="" class="bh-frame__img" />
+            <div class="bh-frame__cap"><span>Fig. 02 — Fondasi</span><b>Warisan · Rooted</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bh-footer">
+    <div class="bh-footer__inner">
+      <div class="bh-footer__top">
+        <div class="bh-footer__brand">BANGHERI AI<small>Agensi Otomasi &amp; Kecerdasan Buatan</small></div>
+        <nav class="bh-footer__links">
+          <a href="#identity">Beranda</a><a href="#thesis">Layanan</a><a href="#featured">Hasil</a><a href="#proof">Founder</a><a href="#contact">Kontak</a>
+        </nav>
+      </div>
+      <div class="bh-footer__bottom">
+        <span>© 2026 BangHeri AI · All rights reserved</span>
+        <span>Dirancang &amp; dibangun di Jakarta · GMT+7</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scrollcraft.js"></script>
+  <script>
+    if (window.ScrollCraft && typeof ScrollCraft.mount === 'function') { ScrollCraft.mount(document.body); }
+    (function () {
+      var rail = document.querySelectorAll('.bh-rail__node');
+      if (!rail.length) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          rail.forEach(function (n) { n.classList.toggle('is-active', n.dataset.target === e.target.id); });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ['identity','thesis','featured','collection','proof','contact'].forEach(function (id) {
+        var el = document.getElementById(id); if (el) io.observe(el);
+      });
+    })();
+    (function () {
+      var pct = document.querySelector('[data-sc-hud-pct]');
+      function update() {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+        if (pct) pct.textContent = String(Math.round(p * 100)).padStart(2, '0');
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
