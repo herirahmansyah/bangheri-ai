@@ -26,15 +26,36 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
 .fade-up-element.visible { opacity: 1; transform: translateY(0); }
 
 #hero { height: 100vh; min-height: 100vh; position: relative; overflow: hidden; background: url('assets/mandalika_tall.webp') center top / cover no-repeat; display: flex; align-items: center; padding: 0 80px; margin: 0; }
-#hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(13, 11, 9, 0.85) 45%, rgba(13, 11, 9, 0.2) 100%); }
-.hero-headline { font-family: var(--font-display); font-size: 72px; line-height: 1.1; margin-bottom: 20px; }
+#hero::before { display: none; }
+.hero-content { position: relative; z-index: 2; }
+.hero-headline { font-family: var(--font-display); font-size: 72px; line-height: 1.1; margin-bottom: 20px; color: #f0ece4; text-shadow: 0 2px 20px rgba(0,0,0,0.8); }
+.hero-subtext { color: rgba(240,236,228,0.85); text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
 .italic-gold { color: var(--gold); font-style: italic; }
 .hero-stats { display: flex; gap: 40px; margin-top: 40px; }
-.hero-stat-num { font-family: var(--font-display); font-size: 48px; }
+.hero-stat-num { font-family: var(--font-display); font-size: 48px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
 .hero-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
 
 #mandalika-parallax { height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px; }
-#mandalika-bg { position: absolute; inset: -30%; background-image: url('assets/mandalika_tall.webp'); background-size: cover; background-position: center top; z-index: 0; will-change: transform; }
+#mandalika-bg {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  right: -10%;
+  bottom: -50%;
+  background-image: url('assets/mandalika_tall.webp');
+  background-size: cover;
+  background-position: center 0%;
+  z-index: 0;
+  will-change: transform;
+}
+#mandalika-parallax::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 11, 9, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
 .parallax-content { position: relative; z-index: 2; max-width: 600px; }
 .parallax-headline { font-family: var(--font-display); font-size: 56px; line-height: 1.1; margin-bottom: 16px; }
 

@@ -28,30 +28,34 @@ document.addEventListener("DOMContentLoaded", () => {
     { backgroundSize: "100%", duration: 2.5, ease: "power2.out" }
   );
 
+  // MANDALIKA — background position dari top (langit) ke bottom (landasan)
   gsap.fromTo("#mandalika-bg",
-    { yPercent: -15 },
+    { backgroundPositionY: "0%" },
     {
-      yPercent: 15,
+      backgroundPositionY: "100%",
       ease: "none",
       scrollTrigger: {
         trigger: "#mandalika-parallax",
         start: "top top",
-        end: "bottom top",
+        end: "+=200%",
         pin: true,
         pinSpacing: true,
-        scrub: 1.5
+        scrub: 2
       }
     }
   );
 
+  // Fade in teks saat section mulai aktif
   gsap.fromTo(".parallax-content",
-    { opacity: 0, y: 40 },
+    { opacity: 0, y: 50 },
     {
-      opacity: 1, y: 0, duration: 1,
+      opacity: 1, y: 0,
+      duration: 1.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#mandalika-parallax",
-        start: "top 80%",
-        toggleActions: "play none none reverse"
+        start: "top top",
+        toggleActions: "play none none none"
       }
     }
   );
