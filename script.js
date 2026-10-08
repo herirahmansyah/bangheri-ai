@@ -117,30 +117,39 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleActions: "play none none reverse"
       }
     }
-  );
+
+    // GERABAH — background zoom+rotate, teks crossfade, HUD orbit angle
+  let orbitData = { angle: 0 };
 
   const gerabahTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#gerabah-rotate-section",
       start: "top top",
-      end: "+=150%",
+      end: "+=200%",
       pin: true,
       pinSpacing: true,
-      scrub: 1.5
+      scrub: 2,
+      onUpdate: (self) => {
+        const angle = Math.round(self.progress * 45);
+        const el = document.getElementById("orbit-value");
+        if (el) el.textContent = angle;
+      }
     }
   });
+
   gerabahTl
     .fromTo("#gerabah-bg",
       { rotation: 0, scale: 1.0 },
-      { rotation: 45, scale: 1.1, ease: "none", duration: 1 }
+      { rotation: 45, scale: 1.15, ease: "none", duration: 1 },
+      0
     )
-    .fromTo(".card-face.front",
-      { opacity: 1 },
-      { opacity: 0, ease: "none", duration: 0.3 },
-      0.6
+    .fromTo("#gerabah-front",
+      { opacity: 1, y: 0 },
+      { opacity: 0, y: -30, ease: "power2.in", duration: 0.35 },
+      0.55
     )
-    .fromTo(".card-face.back",
-      { opacity: 0, y: 30 },
+    .fromTo("#gerabah-back",
+      { opacity: 0, y: 40 },
       { opacity: 1, y: 0, ease: "power2.out", duration: 0.4 },
       0.75
     );
