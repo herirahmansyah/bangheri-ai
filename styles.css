@@ -23,7 +23,22 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
 .nav-cta { border: 1px solid var(--gold); padding: 8px 16px; border-radius: 999px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
 
 #scroll-progress { position: fixed; bottom: 0; left: 0; height: 2px; background: var(--gold); width: 0%; z-index: 1001; }
-#section-hud { position: fixed; bottom: 30px; right: 30px; background: rgba(13, 11, 9, 0.9); padding: 6px 12px; color: var(--gold); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; z-index: 999; }
+#section-hud {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(13, 11, 9, 0.9);
+  padding: 6px 12px;
+  color: var(--gold);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 999;
+  min-width: 80px;
+  text-align: right;
+}
 .fade-up-element { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .fade-up-element.visible { opacity: 1; transform: translateY(0); }
 
@@ -32,7 +47,13 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
 .hero-content { position: relative; z-index: 2; }
 .hero-headline { font-family: var(--font-display); font-size: 72px; line-height: 1.1; margin-bottom: 20px; color: var(--warm-white); text-shadow: 0 2px 20px rgba(0,0,0,0.8); }
 .hero-subtext { color: #8a8075; text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
-.italic-gold { color: var(--gold); font-style: italic; }
+.italic-gold {
+  font-style: italic;
+  background: linear-gradient(135deg, #e8c97a 0%, #c9a96e 40%, #a07840 70%, #c9a96e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .hero-stats { display: flex; gap: 40px; margin-top: 40px; }
 .hero-stat-num { font-family: var(--font-display); font-size: 48px; color: var(--warm-white); text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
 .hero-stat-label { font-size: 11px; color: #6b6458; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -154,6 +175,11 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
   min-width: 28px;
   text-align: right;
 }
+#mandalika-bg, #tas-zoom, #tenun-pan, #gerabah-bg {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
 /* ====================== FONT COLOR SYSTEM (luxury reference) ====================== */
 
 /* --- Navbar --- */
@@ -241,3 +267,10 @@ footer a { color: #4a4540; }
 footer a:hover { color: var(--gold); }
 #section-hud { color: var(--gold); }
 
+/* ====================== RESPONSIVE TYPOGRAPHY ====================== */
+@media (max-width: 768px) {
+  .hero-headline { font-size: clamp(32px, 8vw, 56px); }
+  .section-headline { font-size: clamp(28px, 7vw, 48px); }
+  .parallax-headline { font-size: clamp(28px, 7vw, 48px); }
+  .back-headline { font-size: clamp(28px, 7vw, 48px); }
+}
