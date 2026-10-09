@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Hero content langsung visible saat halaman dibuka
+  gsap.set(".hero-content", { opacity: 1, y: 0 });
+
   gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener("scroll", () => {
@@ -46,19 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Fade in teks saat section mulai aktif
-  gsap.fromTo(".parallax-content",
-    { opacity: 0, y: 50 },
-    {
-      opacity: 1, y: 0,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#mandalika-parallax",
-        start: "top top",
-        toggleActions: "play none none none"
-      }
-    }
-  );
+  gsap.set(".parallax-content", { opacity: 1, y: 0 });
 
   const tasTimeline = gsap.timeline({
     scrollTrigger: {
@@ -117,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleActions: "play none none reverse"
       }
     }
+  );
 
     // GERABAH — background zoom+rotate, teks crossfade, HUD orbit angle
   let orbitData = { angle: 0 };
