@@ -27,7 +27,7 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
 .fade-up-element { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .fade-up-element.visible { opacity: 1; transform: translateY(0); }
 
-#hero { height: 100vh; min-height: 100vh; position: relative; overflow: hidden; background: url('assets/mandalika_tall.webp') center top / cover no-repeat; display: flex; align-items: center; padding: 0 80px; margin: 0; }
+#hero { height: 100vh; min-height: 100vh; position: relative; overflow: hidden; background: url('assets/mandalika_hero.webp') center top / cover no-repeat; display: flex; align-items: center; padding: 0 80px; margin: 0; }
 #hero::before { display: none; }
 .hero-content { position: relative; z-index: 2; }
 .hero-headline { font-family: var(--font-display); font-size: 72px; line-height: 1.1; margin-bottom: 20px; color: var(--warm-white); text-shadow: 0 2px 20px rgba(0,0,0,0.8); }
@@ -292,3 +292,35 @@ footer a:hover { color: var(--gold); }
 @media (min-width: 901px) {
   #tas-zoom-section .services-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
 }
+/* ===== COLLECTION: karya nyata + strip integrasi ===== */
+#gerabah-rotate-section { box-sizing: border-box; padding: 104px 60px 40px; }
+#gerabah-front .section-headline { font-size: clamp(28px, 5.5vh, 44px); margin-bottom: 14px; }
+.karya-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.karya-card { display: flex; flex-direction: column; background: rgba(13, 11, 9, 0.72); border: 1px solid rgba(201, 169, 110, 0.25); backdrop-filter: blur(8px); }
+.karya-shot { height: clamp(110px, 22vh, 150px); overflow: hidden; border-bottom: 1px solid rgba(201, 169, 110, 0.2); }
+.karya-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.karya-body { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 16px; }
+.karya-head { display: flex; align-items: center; justify-content: space-between; }
+.karya-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; line-height: 1.2; color: var(--warm-white); }
+.karya-live { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; color: #0d0b09; background: var(--gold); padding: 3px 10px; border-radius: 999px; }
+.karya-desc { font-size: 0.85rem; line-height: 1.5; color: #c8c0b4; }
+.karya-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.karya-chips li { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--gold); border: 1px solid rgba(201, 169, 110, 0.35); padding: 3px 10px; border-radius: 999px; }
+.karya-btn { align-self: flex-start; margin-top: 4px; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; color: var(--gold); border: 1px solid var(--gold); padding: 8px 18px; border-radius: 999px; transition: all 0.3s ease; }
+.karya-btn:hover { background: var(--gold); color: #0d0b09; }
+
+.trust-strip { background: #0d0b09; border-top: 1px solid rgba(201, 169, 110, 0.15); border-bottom: 1px solid rgba(201, 169, 110, 0.15); padding: 36px 40px; text-align: center; }
+.trust-label { font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 22px; }
+.trust-logos { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 44px; }
+.trust-logos li { display: flex; align-items: center; gap: 10px; color: #8a8075; font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+.trust-logos li:hover { color: var(--gold); }
+.trust-text { display: flex; flex-direction: column; text-align: left; line-height: 1.2; }
+.trust-text small { font-size: 0.62rem; letter-spacing: 0.08em; color: #6b6458; }
+.trust-logos .logo { width: 22px; height: 22px; background-color: currentColor; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; }
+.logo-google { -webkit-mask-image: url('assets/logos/google.svg'); mask-image: url('assets/logos/google.svg'); }
+.logo-whatsapp { -webkit-mask-image: url('assets/logos/whatsapp.svg'); mask-image: url('assets/logos/whatsapp.svg'); }
+.logo-telegram { -webkit-mask-image: url('assets/logos/telegram.svg'); mask-image: url('assets/logos/telegram.svg'); }
+.logo-n8n { -webkit-mask-image: url('assets/logos/n8n.svg'); mask-image: url('assets/logos/n8n.svg'); }
+.logo-claude { -webkit-mask-image: url('assets/logos/claude.svg'); mask-image: url('assets/logos/claude.svg'); }
+.trust-note { margin-top: 18px; font-size: 0.65rem; color: #6b6458; }
+@media (max-width: 900px) { .karya-grid { grid-template-columns: 1fr; } }

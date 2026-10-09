@@ -132,6 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const el = document.getElementById("orbit-value");
         if (el) el.textContent = angle;
         if (vid.duration) target = self.progress * vid.duration;
+        const fr = document.getElementById("gerabah-front");
+        const bk = document.getElementById("gerabah-back");
+        if (fr) fr.style.pointerEvents = self.progress < 0.5 ? "auto" : "none";
+        if (bk) bk.style.pointerEvents = self.progress > 0.85 ? "auto" : "none";
       }
     }
   });
