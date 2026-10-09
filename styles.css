@@ -84,15 +84,13 @@ nav { position: fixed; top: 0; width: 100%; padding: 20px 40px; display: flex; j
   padding: 80px;
 }
 
-#gerabah-bg {
+#gerabah-video {
   position: absolute;
-  inset: -25%;
-  background-image: url('assets/gerabah_isolated.webp');
-  background-size: cover;
-  background-position: center center;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 0;
-  will-change: transform;
-  transform-origin: center center;
 }
 
 #gerabah-overlay {

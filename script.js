@@ -111,7 +111,16 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
     // GERABAH — background zoom+rotate, teks crossfade, HUD orbit angle
-  let orbitData = { angle: 0 };
+  const vid = document.getElementById("gerabah-video");
+  let target = 0, current = 0;
+  vid.addEventListener("loadedmetadata", () => { vid.pause(); });
+  const unlock = () => { vid.play().then(() => vid.pause()).catch(()=>{}); window.removeEventListener("touchstart", unlock); };
+  window.addEventListener("touchstart", unlock, { once: true });
+  gsap.ticker.add(() => {
+    if (!vid.duration) return;
+    current += (target - current) * 0.12;
+    if (Math.abs(vid.currentTime - current) > 0.01) vid.currentTime = current;
+  });
 
   const gerabahTl = gsap.timeline({
     scrollTrigger: {
@@ -122,19 +131,15 @@ document.addEventListener("DOMContentLoaded", () => {
       pinSpacing: true,
       scrub: 2,
       onUpdate: (self) => {
-        const angle = Math.round(self.progress * 45);
+        const angle = Math.round(self.progress * 180);
         const el = document.getElementById("orbit-value");
         if (el) el.textContent = angle;
+        if (vid.duration) target = self.progress * vid.duration;
       }
     }
   });
 
   gerabahTl
-    .fromTo("#gerabah-bg",
-      { rotation: 0, scale: 1.0 },
-      { rotation: 45, scale: 1.15, ease: "none", duration: 1 },
-      0
-    )
     .fromTo("#gerabah-front",
       { opacity: 1, y: 0 },
       { opacity: 0, y: -30, ease: "power2.in", duration: 0.35 },
