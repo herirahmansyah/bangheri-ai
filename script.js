@@ -51,24 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fade in teks saat section mulai aktif
   gsap.set(".parallax-content", { opacity: 1, y: 0 });
 
-  const tasTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#tas-zoom-section",
-      start: "top top",
-      end: "+=150%",
-      pin: true,
-      pinSpacing: true,
-      scrub: 1.5
+  gsap.fromTo("#tas-zoom",
+    { scale: 1.0 },
+    {
+      scale: 1.3,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#tas-zoom-section",
+        start: "top top",
+        end: "+=150%",
+        pin: true,
+        pinSpacing: true,
+        scrub: 1.5
+      }
     }
-  });
-  tasTimeline
-    .fromTo("#tas-zoom",
-      { scale: 1.0 },
-      { scale: 1.25, ease: "none", duration: 1 }
-    )
-    .to("#tas-zoom",
-      { scale: 1.0, ease: "none", duration: 1 }
-    );
+  );
 
   gsap.fromTo(".zoom-text-side",
     { opacity: 0, y: 50 },
@@ -150,6 +147,19 @@ document.addEventListener("DOMContentLoaded", () => {
       { opacity: 1, y: 0, ease: "power2.out", duration: 0.4 },
       0.75
     );
+
+  // NAV: klik menu lalu scroll ke titik awal pin tiap section
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const el = document.querySelector(a.getAttribute("href"));
+      if (!el) return;
+      e.preventDefault();
+      const st = ScrollTrigger.getAll().find((t) => t.trigger === el && t.pin);
+      const y = st ? st.start : el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 
   gsap.fromTo(".about-split",
     { opacity: 0, y: 60 },

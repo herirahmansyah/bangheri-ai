@@ -239,3 +239,56 @@ footer a { color: #4a4540; }
 footer a:hover { color: var(--gold); }
 #section-hud { color: var(--gold); }
 
+
+/* ===== PERBAIKAN: hero terbaca, tas gambar utuh + teks muat ===== */
+
+/* HERO: badge dan subtext jelas, tidak tertutup navbar */
+#hero {
+  box-sizing: border-box;
+  padding: 104px 80px 40px;
+}
+#hero .badge {
+  position: relative;
+  z-index: 3;
+  background: rgba(13, 11, 9, 0.6);
+  backdrop-filter: blur(6px);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+#hero .hero-headline { font-size: clamp(40px, 8vh, 72px); margin-bottom: 16px; }
+#hero .hero-subtext {
+  color: var(--gold);
+  max-width: 520px;
+  margin-bottom: clamp(16px, 3vh, 32px);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.85);
+}
+#hero .hero-stats { margin-top: clamp(16px, 3vh, 32px); }
+#hero .hero-stat-num { font-size: clamp(32px, 6.5vh, 48px); }
+
+/* TAS: gambar utuh (contain), teks dirapatkan agar muat di bawah navbar */
+#tas-zoom-section {
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 104px 60px 40px;
+  background-color: #0d0b09;
+  overflow: hidden;
+  align-items: center;
+}
+#tas-zoom {
+  background-color: #0d0b09;
+  background-image: linear-gradient(rgba(13, 11, 9, 0.5), rgba(13, 11, 9, 0.5)), url('assets/tas_umkm_2k.webp');
+  background-size: 100% 100%, contain;
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+  transform-origin: center center;
+}
+#tas-zoom-section .zoom-content { grid-template-columns: 1fr; width: 100%; }
+#tas-zoom-section .section-headline { font-size: clamp(30px, 6vh, 46px); margin-bottom: 16px; }
+#tas-zoom-section .section-headline br { display: none; }
+#tas-zoom-section .service-card { padding: 16px 18px; }
+#tas-zoom-section .service-card-num { display: block; line-height: 1.4; }
+#tas-zoom-section .service-card-title { font-size: 1.15rem; line-height: 1.3; margin: 2px 0 6px; }
+#tas-zoom-section .service-card-desc { font-size: 0.8rem; line-height: 1.5; }
+@media (min-width: 901px) {
+  #tas-zoom-section .services-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+}
