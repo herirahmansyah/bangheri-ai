@@ -2,6 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hero content langsung visible saat halaman dibuka
   gsap.set(".hero-content", { opacity: 1, y: 0 });
 
+  // HERO: counter angka (48 / 3x / 30) dari 0 saat halaman dibuka
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".hero-stat-num[data-count]").forEach((el, i) => {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || "";
+    if (reduceMotion || isNaN(target)) return;
+    const counter = { value: 0 };
+    el.textContent = "0" + suffix;
+    gsap.to(counter, {
+      value: target,
+      duration: Math.min(2.4, 0.9 + target * 0.03),
+      delay: 0.6 + i * 0.15,
+      ease: "power2.out",
+      onUpdate: () => { el.textContent = Math.round(counter.value) + suffix; },
+      onComplete: () => { el.textContent = target + suffix; }
+    });
+  });
+
   gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener("scroll", () => {
