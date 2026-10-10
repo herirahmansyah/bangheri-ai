@@ -40,3 +40,7 @@ orchid-project/
 scrollcraft/
 .vercel
 .env*
+/BRIEF.md
+/CLAUDE.md
+/SKILL.md
+/.claude/
